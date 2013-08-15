@@ -49,7 +49,7 @@ class MoviesController < ApplicationController
   def edit
     @movie = Movie.find params[:id]
   end
-
+ 
   def update
     @movie = Movie.find params[:id]
     @movie.update_attributes!(params[:movie])
@@ -64,4 +64,37 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+	# def search_tmdb
+	 # # hardwire to simulate failure
+	  # flash[:warning] = "'#{params[:search_terms]}' was not found in TMDb."
+	  # redirect_to movies_path
+	# end
+
+  def similar
+    @id = params[:id]
+    @movie = Movie.find(@id)
+    @director = @movie.director
+    if not @director.blank?
+      @movies = Movie.similar_directors(@director)
+	  debugger
+    else
+      flash[:notice] = "'#{@movie.title}' has no director info"
+      redirect_to '/'
+    end
+  end
+	# quitarle la que ya tenemos
+	#comprobar que tenga director
+
+    # mov = Movie.find(params[:id])
+    # dir = mov.director
+    # if (dir.nil? || dir.empty?)
+      # flash[:notice] = "'#{mov.title}' has no director info"
+      # redirect_to '/'
+    # else
+      # @movies = Movie.find_all_by_director(dir)
+    # end
+	
+
+	
+	
 end
