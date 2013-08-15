@@ -1,3 +1,5 @@
+En heroku
+http://protected-hamlet-8556.herokuapp.com/movies?ratings[G]=G&ratings[NC-17]=NC-17&ratings[PG]=PG&ratings[PG-13]=PG-13&ratings[R]=R&sort=release_date
 == Welcome to Rails
 
 Rails is a web-application framework that includes everything needed to create
